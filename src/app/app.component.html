@@ -1,21 +1,69 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="{{theme | async}}" >
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" opened="true" class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+                 [fixedBottomGap]="options.value.bottom">
+                 <mat-list>
+                  <mat-list-item>
+                     <mat-icon class="clickable" id="sidenav-closer" (click)="sidenav.toggle()">close</mat-icon>
+                  </mat-list-item>
+                  <mat-list-item>
+                     <a id="home-link" mat-button-icon [routerLink]="['/']"><mat-icon class="clickable">home</mat-icon></a>
+                   </mat-list-item>
+                  <a [routerLink]="['/dotnet-core']" mat-list-item>
+                      <img matListAvatar src="assets/dotnet-core.png" alt=".NET Core">
+                      <h3 matLine> .NET Core </h3>
+                  </a>
+                  <a mat-list-item>
+                      <img matListAvatar src="assets/node-js.jpg" alt="NodeJS">
+                      <h3 matLine> NodeJS </h3>
+                  </a>
+                  <a mat-list-item>
+                      <img matListAvatar src="assets/elixir-phoenix.jpg" alt="Phoenix">
+                      <h3 matLine> Phoenix</h3>
+                  </a>
+                  <a mat-list-item>
+                      <img matListAvatar src="assets/ruby_on_rails.png" alt="Ruby on Rails">
+                      <h3 matLine> Ruby on Rails </h3>
+                  </a>
+                </mat-list>                      
+    </mat-sidenav>
 
-<router-outlet></router-outlet>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" role="header" id="header">
+          <mat-icon class="clickable" id="sidenav-opener" (click)="sidenav.toggle()" *ngIf="!sidenav.opened">menu</mat-icon>
+          <div class="container">              
+            <div class="text-center">
+              <a id="title-link" [routerLink]="['/']" mat-button>I <fa name="heart" animation="spin"></fa> Frameworks</a>
+              <mat-radio-group>
+                <mat-radio-button value="angular" (change)="setTheme('angular')">Angular Theme</mat-radio-button>
+                <mat-radio-button value="rails" (change)="setTheme('rails')">Rails Theme</mat-radio-button>
+                <mat-radio-button value="dotnet-core" (change)="setTheme('dotnet-core')">.NETCore Theme</mat-radio-button>
+                <mat-radio-button value="node" (change)="setTheme('node')">Node Theme</mat-radio-button>
+                <mat-radio-button value="phoenix" (change)="setTheme('phoenix')">Phoenix Theme</mat-radio-button>
+              </mat-radio-group>
+            </div>            
+          </div>
+      </mat-toolbar>
+      <mat-card color="accent">
+        <form [formGroup]="options">
+          <p><mat-checkbox formControlName="fixed">Fixed</mat-checkbox></p>
+          <p><mat-form-field>
+            <input matInput type="number" formControlName="top" placeholder="Top gap">
+          </mat-form-field></p>
+          <p><mat-form-field>
+            <input matInput type="number" formControlName="bottom" placeholder="Bottom gap">
+          </mat-form-field></p>
+          <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+        </form>   
+      </mat-card>
+      <router-outlet></router-outlet>
+
+      <mat-toolbar role="footer" id="footer">
+        <div class="container">Footer</div>
+      </mat-toolbar>
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>  
+
+</div>

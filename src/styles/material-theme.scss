@@ -1,0 +1,67 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+$primary: mat-palette($mat-red, 600, 100, 800);
+$accent: mat-palette($mat-blue, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+.angular {
+    $primary: mat-palette($mat-red, 600, 100, 800);
+    $accent: mat-palette($mat-blue, A400);
+    $warn: mat-palette($mat-red);
+    $theme: mat-light-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+.rails {
+    color: $light-primary-text;
+    $primary: mat-palette($mat-red, 900);
+    $accent: mat-palette($mat-red, 50);
+    $warn: mat-palette($mat-red);
+    $theme: mat-dark-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+.node {
+    color: $light-primary-text;
+    $primary: mat-palette($mat-green, 600);
+    $accent: mat-palette($mat-green, 50);
+    $warn: mat-palette($mat-red);
+    $theme: mat-dark-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+.dotnet-core {
+    $primary: mat-palette($mat-purple, 500);
+    $accent: mat-palette($mat-light-blue);
+    $warn: mat-palette($mat-red);
+    $theme: mat-light-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+.phoenix {
+    $primary: mat-palette($mat-orange, 700);
+    $accent: mat-palette($mat-deep-purple, 300);
+    $warn: mat-palette($mat-red);
+    $theme: mat-light-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+// Our dark theme
+.dark-theme {
+    color: $light-primary-text;
+    $dark-primary: mat-palette($mat-yellow);
+    $dark-accent: mat-palette($mat-amber, A400, A100, A700);
+    $dark-warn: mat-palette($mat-red);
+    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  
+    @include angular-material-theme($dark-theme);
+  }
