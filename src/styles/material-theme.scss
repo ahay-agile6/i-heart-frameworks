@@ -38,7 +38,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 }
 
 .dotnet-core {
-    $primary: mat-palette($mat-purple, 500);
+    $primary: mat-palette($mat-purple, 800);
     $accent: mat-palette($mat-light-blue);
     $warn: mat-palette($mat-red);
     $theme: mat-light-theme($primary, $accent, $warn);
@@ -47,7 +47,16 @@ $theme: mat-light-theme($primary, $accent, $warn);
 }
 
 .phoenix {
-    $primary: mat-palette($mat-orange, 700);
+    $primary: mat-palette($mat-orange, 900);
+    $accent: mat-palette($mat-deep-purple, 300);
+    $warn: mat-palette($mat-red);
+    $theme: mat-light-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
+.agile6 {
+    $primary: mat-palette($mat-orange, 900);
     $accent: mat-palette($mat-deep-purple, 300);
     $warn: mat-palette($mat-red);
     $theme: mat-light-theme($primary, $accent, $warn);

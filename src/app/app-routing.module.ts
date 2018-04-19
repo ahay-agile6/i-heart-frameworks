@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DotnetCoreComponent } from './dotnet-core/dotnet-core.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,8 +12,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: AuthComponent,
+    canActivate: [LoginGuard]
+  },
+  {
     path: 'dotnet-core',
-    component: DotnetCoreComponent
+    component: DotnetCoreComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

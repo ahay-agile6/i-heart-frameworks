@@ -1,3 +1,24 @@
-<p>
-  auth works!
-</p>
+
+<mat-card>
+  <!-- <div *ngIf="!user" id="okta-login-container"></div>
+
+  <div *ngIf="user">
+    Hello {{user}}
+
+    <button mat-button (click)="logout()">Logout</button>
+  </div> --> 
+    <h4 class="card-title">Login with Username/Password</h4>
+
+    <p class="alert alert-error" *ngIf="loginFailed">
+      Login wasn't successful.
+    </p>
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Username" [(ngModel)]="username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" [(ngModel)]="password">       
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="loginWithPassword()">Login</button>
+  </div>
+</mat-card>

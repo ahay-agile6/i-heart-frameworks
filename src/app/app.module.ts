@@ -13,23 +13,38 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ThemeService } from './services/theme.service';
 import { DotnetCoreComponent } from './dotnet-core/dotnet-core.component';
 import { AuthComponent } from './auth/auth.component';
+import { Okta } from './services/okta.service';
+import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { OAuthModule } from 'angular-oauth2-oidc';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { OktaAuthWrapper } from './auth/okta.auth.wrapper';
 
 @NgModule({
   declarations: [
     AppComponent,
     DotnetCoreComponent,
-    AuthComponent
+    AuthComponent    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    OAuthModule.forRoot()    
   ],
-  providers: [ThemeService],
+  providers: [
+    ThemeService,
+    Okta,
+    LoginGuard,
+    AuthGuard,
+    OktaAuthWrapper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

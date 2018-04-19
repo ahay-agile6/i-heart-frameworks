@@ -3,6 +3,8 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ThemeService } from './services/theme.service';
 import { Observable } from 'rxjs/Observable';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,14 @@ export class AppComponent {
   isDarkTheme: Observable<boolean>;
   theme: Observable<String>;
 
-  constructor(fb: FormBuilder, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private themeService: ThemeService) {
+  constructor(
+    fb: FormBuilder, 
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher, 
+    private themeService: ThemeService,
+    public oauthService: OAuthService,
+    private router: Router
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
@@ -29,7 +38,6 @@ export class AppComponent {
 
     this.isDarkTheme = this.themeService.isDarkTheme;
     this.theme = this.themeService.theme;
-    console.log(this.theme)
   }
 
   ngOnDestroy(): void {
@@ -43,5 +51,17 @@ export class AppComponent {
   setTheme(theme: String) {
     console.log(theme)
     this.themeService.setTheme(theme);
+  }
+
+  get givenName() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['name'];
+  }
+
+  logout() {
+    this.oauthService.logOut();
   }
 }

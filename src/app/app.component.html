@@ -8,7 +8,9 @@
                      <mat-icon class="clickable" id="sidenav-closer" (click)="sidenav.toggle()">close</mat-icon>
                   </mat-list-item>
                   <mat-list-item>
-                     <a id="home-link" mat-button-icon [routerLink]="['/']"><mat-icon class="clickable">home</mat-icon></a>
+                     <a mat-mini-fab color="primary" id="home-link" mat-button-icon [routerLink]="['/']">
+                      <mat-icon class="clickable">home</mat-icon>
+                    </a>
                    </mat-list-item>
                   <a [routerLink]="['/dotnet-core']" mat-list-item>
                       <img matListAvatar src="assets/dotnet-core.png" alt=".NET Core">
@@ -26,42 +28,62 @@
                       <img matListAvatar src="assets/ruby_on_rails.png" alt="Ruby on Rails">
                       <h3 matLine> Ruby on Rails </h3>
                   </a>
+                  <mat-list-item *ngIf="!givenName">               
+                      <a mat-raised-button color="primary" [routerLink]="['/login']" class="centered-element">Login</a>
+                  </mat-list-item>
+                  <mat-list-item *ngIf="givenName">               
+                      <h5>Welcome, {{givenName}}!</h5>
+                  </mat-list-item>
+                  <mat-list-item *ngIf="givenName">
+                      <button mat-raised-button color="accent" (click)="logout()" class="centered-element">Logout</button>
+                  </mat-list-item>
                 </mat-list>                      
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <div class="docs-component-sidenav-content">
       <mat-toolbar color="primary" role="header" id="header">
           <mat-icon class="clickable" id="sidenav-opener" (click)="sidenav.toggle()" *ngIf="!sidenav.opened">menu</mat-icon>
           <div class="container">              
             <div class="text-center">
               <a id="title-link" [routerLink]="['/']" mat-button>I <fa name="heart" animation="spin"></fa> Frameworks</a>
-              <mat-radio-group>
-                <mat-radio-button value="angular" (change)="setTheme('angular')">Angular Theme</mat-radio-button>
-                <mat-radio-button value="rails" (change)="setTheme('rails')">Rails Theme</mat-radio-button>
-                <mat-radio-button value="dotnet-core" (change)="setTheme('dotnet-core')">.NETCore Theme</mat-radio-button>
-                <mat-radio-button value="node" (change)="setTheme('node')">Node Theme</mat-radio-button>
-                <mat-radio-button value="phoenix" (change)="setTheme('phoenix')">Phoenix Theme</mat-radio-button>
-              </mat-radio-group>
+              <mat-menu #appMenu="matMenu" class="theme-picker-menu">
+                <mat-grid-list cols="2" rowHeight="1:1">
+                  <mat-grid-tile>
+                      <button class="theme-picker-swatch" (click)="setTheme('angular')" mat-menu-item matTooltip="AngularJS Theme"><img src="assets/angular.png" alt="AngularJS Theme"></button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                      <button class="theme-picker-swatch" (click)="setTheme('rails')" mat-menu-item matTooltip="Ruby on Rails Theme"><img src="assets/ruby_on_rails.png" alt="Ruby on Rails Theme"></button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                      <button class="theme-picker-swatch" (click)="setTheme('dotnet-core')" mat-menu-item matTooltip=".NET Core Theme"><img src="assets/dotnet-core.png" alt=".NET Core Theme"></button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                      <button class="theme-picker-swatch" (click)="setTheme('node')" mat-menu-item matTooltip="NodeJS Theme"><img src="assets/node-js.jpg" alt="NodeJS Theme"></button>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                      <button class="theme-picker-swatch" (click)="setTheme('phoenix')" mat-menu-item matTooltip="Phoenix Theme"><img src="assets/elixir-phoenix.jpg" alt="Phoenix Theme"></button>
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </mat-menu>
+                
+                <button mat-icon-button [matMenuTriggerFor]="appMenu" matTooltip="Select a theme!">
+                  <mat-icon>format_color_fill</mat-icon>
+                </button>
             </div>            
           </div>
       </mat-toolbar>
-      <mat-card color="accent">
-        <form [formGroup]="options">
-          <p><mat-checkbox formControlName="fixed">Fixed</mat-checkbox></p>
-          <p><mat-form-field>
-            <input matInput type="number" formControlName="top" placeholder="Top gap">
-          </mat-form-field></p>
-          <p><mat-form-field>
-            <input matInput type="number" formControlName="bottom" placeholder="Bottom gap">
-          </mat-form-field></p>
-          <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-        </form>   
-      </mat-card>
-      <router-outlet></router-outlet>
-
-      <mat-toolbar role="footer" id="footer">
-        <div class="container">Footer</div>
-      </mat-toolbar>
+      <div class="docs-component-sidenav-inner-content">
+        <div class="docs-component-sidenav-body-content">          
+          <div class="content-container">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <mat-toolbar role="footer" id="footer">
+          <div class="container">Footer</div>
+        </mat-toolbar>
+      </div>
+    </div>
     </mat-sidenav-content>
     
   </mat-sidenav-container>  
