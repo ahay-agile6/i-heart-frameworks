@@ -22,7 +22,7 @@
                   <mat-list-item *ngIf="givenName">               
                       <h5>Welcome, {{givenName}}!</h5>
                   </mat-list-item>
-                  <mat-list-item *ngIf="givenName">
+                  <mat-list-item *ngIf="oauthService.hasValidIdToken()">
                       <button mat-raised-button color="accent" (click)="logout()" class="centered-element">Logout</button>
                   </mat-list-item>
                 </mat-list>                      
