@@ -1,6 +1,6 @@
 <div class="{{theme | async}}" >
   <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" opened="true" class="example-sidenav"
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="sideNavInitial" class="example-sidenav"
                  [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
                  [fixedBottomGap]="options.value.bottom">
                  <mat-list>
@@ -52,6 +52,9 @@
                   <mat-grid-tile>
                       <button class="theme-picker-swatch" (click)="setTheme('phoenix')" mat-menu-item matTooltip="Phoenix Theme"><img src="assets/elixir-phoenix.jpg" alt="Phoenix Theme"></button>
                   </mat-grid-tile>
+                  <mat-grid-tile>
+                    <button class="theme-picker-swatch" (click)="setTheme('a6')" mat-menu-item matTooltip="Agile Six Applications, Inc Theme"><img src="assets/a6.jpg" alt="Agile Six Applications, Inc. Theme"></button>
+                    </mat-grid-tile>
                 </mat-grid-list>
               </mat-menu>
                 

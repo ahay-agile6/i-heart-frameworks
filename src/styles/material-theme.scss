@@ -8,6 +8,15 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
 
+.a6 {
+    $primary: mat-palette($mat-light-blue);
+    $accent: mat-palette($mat-grey, 600);
+    $warn: mat-palette($mat-red);
+    $theme: mat-light-theme($primary, $accent, $warn);
+    
+    @include angular-material-theme($theme);
+}
+
 .angular {
     $primary: mat-palette($mat-red, 600, 100, 800);
     $accent: mat-palette($mat-blue, A400);

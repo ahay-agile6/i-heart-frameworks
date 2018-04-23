@@ -22,12 +22,14 @@ import { OktaAuthWrapper } from './auth/okta.auth.wrapper';
 import { HttpModule } from '@angular/http';
 import { FrameworkComponent } from './framework/framework.component';
 import { MessageService } from './services/message.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    FrameworkComponent    
+    FrameworkComponent,
+    HomeComponent    
   ],
   imports: [
     BrowserModule,

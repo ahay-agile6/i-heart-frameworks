@@ -20,6 +20,7 @@ export class AppComponent {
   isDarkTheme: Observable<boolean>;
   theme: Observable<String>;
   frameworkLinks = [];
+  sideNavInitial = true;
 
   constructor(
     fb: FormBuilder, 
@@ -32,6 +33,7 @@ export class AppComponent {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
+    this.sideNavInitial = this.mobileQuery.matches ? false : true;
 
     this.options = fb.group({
       'fixed': true,

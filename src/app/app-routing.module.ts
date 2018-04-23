@@ -4,11 +4,12 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { FrameworkComponent } from './framework/framework.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {

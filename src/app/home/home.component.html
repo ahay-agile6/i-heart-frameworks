@@ -1,0 +1,12 @@
+<mat-card>
+  <div>
+    <p>Do you <fa name="heart"></fa> frameworks?</p>
+    <p>Me, too. <fa name="smile-o"></fa></p>
+    <p>This is a proof of concept as to how to use a front-end framework with several different back-end frameworks with one federated authentication and authorization system.</p>
+  </div>
+  <mat-divider [inset]="true"></mat-divider>
+  <div>
+    <p>To get started, <span *ngIf="!oauthService.hasValidIdToken()"><a mat-button color="primary" [routerLink]="['/login']" class="centered-element">login</a> to the application and then</span> choose a framework from the side-nav panel.</p>
+    <p>You can also change the theme/color-scheme any time by clicking on the paint bucket in the header.</p>
+  </div>
+</mat-card>
