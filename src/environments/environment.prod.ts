@@ -1,4 +1,7 @@
+import sharedEnvironment from './base';
+
 export const environment = {
+  ...sharedEnvironment,
   production: true,
   frameworks: [
     {name: 'dotnet-core', apiBase: 'https://lightning-dotnet-okta.herokuapp.com', displayName: '.NET Core', avatarFileName: 'dotnet-core.png'},

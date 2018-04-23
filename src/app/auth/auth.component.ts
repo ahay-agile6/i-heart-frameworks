@@ -4,6 +4,7 @@ import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { OktaAuthWrapper } from './okta.auth.wrapper';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'; 
 
 @Component({
   selector: 'app-auth',
@@ -28,9 +29,9 @@ export class AuthComponent implements OnInit {
     //this.oktaSignIn = okta.getWidget();
     this.oauthService.redirectUri = window.location.origin;
     this.oauthService.postLogoutRedirectUri = window.location.origin + '/login';
-    this.oauthService.clientId = '0oaeo4mzcoaHbclaY0h7';
+    this.oauthService.clientId = environment.oauthClientid;
     this.oauthService.scope = 'openid profile email';
-    this.oauthService.issuer = 'https://dev-512848.oktapreview.com/oauth2/default';
+    this.oauthService.issuer = environment.oauthIssuer;
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
 
     // Load Discovery Document and then try to login the user
