@@ -15,6 +15,7 @@ export class AuthComponent implements OnInit {
   oktaSignIn;
   username;
   password;
+  loginFailed;
 
   constructor(
     private okta: Okta, 
