@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  frameworks: [
+    {name: 'dotnet-core', apiBase: 'http://localhost:5001', displayName: '.NET Core', avatarFileName: 'dotnet-core.png'},
+    {name: 'node-js', apiBase: 'http://localhost:5002', displayName: 'NodeJS', avatarFileName: 'node-js.jpg'}
+  ]
 };

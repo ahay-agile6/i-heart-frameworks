@@ -27,7 +27,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
     @include angular-material-theme($theme);
 }
 
-.node {
+.node-js {
     color: $light-primary-text;
     $primary: mat-palette($mat-green, 600);
     $accent: mat-palette($mat-green, 50);

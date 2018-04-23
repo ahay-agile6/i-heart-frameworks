@@ -11,23 +11,11 @@
                      <a mat-mini-fab color="primary" id="home-link" mat-button-icon [routerLink]="['/']">
                       <mat-icon class="clickable">home</mat-icon>
                     </a>
-                   </mat-list-item>
-                  <a [routerLink]="['/dotnet-core']" mat-list-item>
-                      <img matListAvatar src="assets/dotnet-core.png" alt=".NET Core">
-                      <h3 matLine> .NET Core </h3>
-                  </a>
-                  <a mat-list-item>
-                      <img matListAvatar src="assets/node-js.jpg" alt="NodeJS">
-                      <h3 matLine> NodeJS </h3>
-                  </a>
-                  <a mat-list-item>
-                      <img matListAvatar src="assets/elixir-phoenix.jpg" alt="Phoenix">
-                      <h3 matLine> Phoenix</h3>
-                  </a>
-                  <a mat-list-item>
-                      <img matListAvatar src="assets/ruby_on_rails.png" alt="Ruby on Rails">
-                      <h3 matLine> Ruby on Rails </h3>
-                  </a>
+                   </mat-list-item>                   
+                   <a *ngFor="let framework of frameworkLinks" [routerLink]="['framework', framework.name]" mat-list-item>
+                        <img matListAvatar src="assets/{{framework.avatarFileName}}" alt="{{framework.displayName}}">
+                        <h3 matLine> {{framework.displayName}} </h3>
+                    </a>
                   <mat-list-item *ngIf="!givenName">               
                       <a mat-raised-button color="primary" [routerLink]="['/login']" class="centered-element">Login</a>
                   </mat-list-item>
@@ -47,7 +35,7 @@
           <div class="container">              
             <div class="text-center">
               <a id="title-link" [routerLink]="['/']" mat-button>I <fa name="heart" animation="spin"></fa> Frameworks</a>
-              <mat-menu #appMenu="matMenu" class="theme-picker-menu">
+              <mat-menu #appMenu="matMenu" class="theme-picker-menu" >
                 <mat-grid-list cols="2" rowHeight="1:1">
                   <mat-grid-tile>
                       <button class="theme-picker-swatch" (click)="setTheme('angular')" mat-menu-item matTooltip="AngularJS Theme"><img src="assets/angular.png" alt="AngularJS Theme"></button>
@@ -59,7 +47,7 @@
                       <button class="theme-picker-swatch" (click)="setTheme('dotnet-core')" mat-menu-item matTooltip=".NET Core Theme"><img src="assets/dotnet-core.png" alt=".NET Core Theme"></button>
                   </mat-grid-tile>
                   <mat-grid-tile>
-                      <button class="theme-picker-swatch" (click)="setTheme('node')" mat-menu-item matTooltip="NodeJS Theme"><img src="assets/node-js.jpg" alt="NodeJS Theme"></button>
+                      <button class="theme-picker-swatch" (click)="setTheme('node-js')" mat-menu-item matTooltip="NodeJS Theme"><img src="assets/node-js.jpg" alt="NodeJS Theme"></button>
                   </mat-grid-tile>
                   <mat-grid-tile>
                       <button class="theme-picker-swatch" (click)="setTheme('phoenix')" mat-menu-item matTooltip="Phoenix Theme"><img src="assets/elixir-phoenix.jpg" alt="Phoenix Theme"></button>

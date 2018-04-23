@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ThemeService } from './services/theme.service';
-import { DotnetCoreComponent } from './dotnet-core/dotnet-core.component';
 import { AuthComponent } from './auth/auth.component';
 import { Okta } from './services/okta.service';
 import { LoginGuard } from './guards/login.guard';
@@ -20,17 +19,21 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OktaAuthWrapper } from './auth/okta.auth.wrapper';
+import { HttpModule } from '@angular/http';
+import { FrameworkComponent } from './framework/framework.component';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DotnetCoreComponent,
-    AuthComponent    
+    AuthComponent,
+    FrameworkComponent    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HttpModule,
     MaterialModule,
     AppRoutingModule,
     FormsModule,
@@ -40,10 +43,11 @@ import { OktaAuthWrapper } from './auth/okta.auth.wrapper';
   ],
   providers: [
     ThemeService,
+    MessageService,
     Okta,
     LoginGuard,
     AuthGuard,
-    OktaAuthWrapper
+    OktaAuthWrapper    
   ],
   bootstrap: [AppComponent]
 })

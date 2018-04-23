@@ -4,7 +4,9 @@
 // @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 // @import '~@angular/material/prebuilt-themes/purple-green.css';
 @import './styles/material-theme';
+@import '~@angular/material/theming';
 
+@include mat-core();
 html,
 body {
    margin:0;
@@ -210,4 +212,16 @@ header, #header {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+}
+
+.angular, .dotnet-core, .phoenix {
+    .mat-menu-panel {
+        background: white;
+    }
+}
+
+.node, .rails {
+    .mat-menu-panel {
+        background: #303030;
+    }
 }

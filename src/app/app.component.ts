@@ -5,6 +5,7 @@ import { ThemeService } from './services/theme.service';
 import { Observable } from 'rxjs/Observable';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  changeDetectorRef: any;
   options: FormGroup;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   isDarkTheme: Observable<boolean>;
   theme: Observable<String>;
+  frameworkLinks = [];
 
   constructor(
     fb: FormBuilder, 
@@ -38,6 +41,8 @@ export class AppComponent {
 
     this.isDarkTheme = this.themeService.isDarkTheme;
     this.theme = this.themeService.theme;
+
+    this.frameworkLinks = environment.frameworks;
   }
 
   ngOnDestroy(): void {
@@ -49,7 +54,6 @@ export class AppComponent {
   }
 
   setTheme(theme: String) {
-    console.log(theme)
     this.themeService.setTheme(theme);
   }
 
@@ -64,4 +68,5 @@ export class AppComponent {
   logout() {
     this.oauthService.logOut();
   }
+
 }
