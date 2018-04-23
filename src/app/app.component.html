@@ -16,10 +16,10 @@
                         <img matListAvatar src="assets/{{framework.avatarFileName}}" alt="{{framework.displayName}}">
                         <h3 matLine> {{framework.displayName}} </h3>
                     </a>
-                  <mat-list-item *ngIf="!givenName">               
+                  <mat-list-item *ngIf="!oauthService.hasValidIdToken()">               
                       <a mat-raised-button color="primary" [routerLink]="['/login']" class="centered-element">Login</a>
                   </mat-list-item>
-                  <mat-list-item *ngIf="givenName">               
+                  <mat-list-item *ngIf="givenName && oauthService.hasValidIdToken()">               
                       <h5>Welcome, {{givenName}}!</h5>
                   </mat-list-item>
                   <mat-list-item *ngIf="oauthService.hasValidIdToken()">
